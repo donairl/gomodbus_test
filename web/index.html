@@ -1,0 +1,70 @@
+<html><title>Modbus Reader</title>
+<script src="/jquery.min.js"></script>
+<script >
+   
+    $(()=>{
+        // Handler for .ready() called.
+        var counter=0;
+        setInterval(()=>{
+
+         counter++;
+         if (counter>35) { 
+             $( "#root1" ).html('');
+             $( "#root2" ).html('');
+             $( "#root3" ).html('');
+             $( "#root4" ).html('');
+             counter=0;  
+         } 
+
+         $.get( "/bacainput/0", function( data ) {
+            var d = new Date().toLocaleString();
+           
+            $( "#root1" ).append(d+' Channel 0 : '+data + "<br>" );
+       
+          });
+
+          $.get( "/bacainput/1", function( data ) {
+            var d = new Date().toLocaleString();
+           
+            $( "#root2" ).append(d+' Channel 1 : '+data + "<br>" );
+       
+          });
+
+
+          $.get( "/bacainput/2", function( data ) {
+            var d = new Date().toLocaleString();
+           
+            $( "#root3" ).append(d+' Channel 2 : '+data + "<br>" );
+       
+          });
+
+          $.get( "/bacainput/3", function( data ) {
+            var d = new Date().toLocaleString();
+           
+            $( "#root4" ).append(d+' Channel 3 : '+data + "<br>" );
+       
+          });
+
+        },1000); 
+           
+      });
+</script>    
+<body>
+    Bacaan Raw Modbus
+<div id="root1" style="float:left;width:20%">
+
+</div>
+<div id="root2" style="float:left;width:20%;color:brown">
+
+</div>
+ 
+<div id="root3" style="float:left;width:20%;color:red">
+
+</div>
+<div id="root4" style="float:left;width:20%;color:slateblue">
+
+    </div>
+    
+ 
+    </body>
+</html>
